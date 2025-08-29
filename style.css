@@ -1,6 +1,4 @@
-/* style.css – VinBank DApp */
-
-/* CƠ BẢN */
+/*  */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f8f9fa;
@@ -9,14 +7,14 @@ body {
   padding: 0;
 }
 
-/* CONTAINER CHÍNH */
+/* CONTAINER */
 .container {
   max-width: 780px;
   margin: 30px auto;
   padding: 20px;
 }
 
-/* LOGO + THÔNG TIN HEADER */
+/* LOGO  */
 .header {
   display: flex;
   align-items: center;
@@ -46,7 +44,7 @@ body {
   word-break: break-all;
 }
 
-/* NÚT KẾT NỐI VÍ */
+/* */
 #connectWallet {
   margin-left: auto;
   background-color: #007bff;
@@ -63,7 +61,7 @@ body {
   background-color: #0056b3;
 }
 
-/* THẺ CARD */
+/* CARD */
 .card {
   background-color: #ffffff;
   border-radius: 12px;
@@ -77,7 +75,7 @@ body {
   font-size: 1.3em;
   margin-bottom: 15px;
 }
-/* INPUT SỐ */
+/* INPUT */
 input[type="number"] {
   width: 100%;
   padding: 10px 12px;
@@ -89,7 +87,7 @@ input[type="number"] {
   box-sizing: border-box;
 }
 
-/* NÚT CHUNG */
+/*  */
 button {
   background: #28a745;
   color: white;
@@ -110,7 +108,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* BẢNG THÔNG TIN */
+/* */
 pre {
   background-color: #f1f3f5;
   padding: 12px;
@@ -167,7 +165,7 @@ pre {
     margin-top: 10px;
   }
 }
-/* === Responsive tối ưu cho tablet và mobile === */
+/* ===  === */
 @media screen and (max-width: 768px) {
   .container {
     padding: 15px;
@@ -195,7 +193,7 @@ pre {
   }
 }
 
-/* === Responsive tối đa cho điện thoại nhỏ hơn 480px === */
+/* === === */
 @media screen and (max-width: 480px) {
   .logo {
     width: 40px;
@@ -219,7 +217,7 @@ pre {
     padding-bottom: 40px;
   }
 }
-/* Ngăn chọn văn bản, ngăn kéo chuột */
+/* */
 body {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -230,7 +228,7 @@ body {
 /* === Custom style for VinSocial section === */
 .card:nth-of-type(4) {
   border: 2px solid #00bfa5;
-  background: #f1fcf9; /* Nền xanh nhạt rất dịu */
+  background: #f1fcf9; /* */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -253,10 +251,10 @@ body {
   text-decoration: underline;
 }
 
-/* === VinDice promo card (hài hòa với .card hiện có) === */
+/* === VinDice promo card  === */
 .vindice-card {
-  border: 2px solid #7f56d9;            /* tím nhẹ làm điểm nhấn */
-  background: #f7f4ff;                  /* tím pastel dịu */
+  border: 2px solid #7f56d9;            /*  */
+  background: #f7f4ff;                  /*  */
   transition: transform .3s ease, box-shadow .3s ease;
 }
 
@@ -282,10 +280,10 @@ body {
 
 .vindice-card .mini-list {
   margin: 8px 0 0 0;
-  padding-left: 18px; /* đồng bộ ul mặc định */
+  padding-left: 18px; /*  */
 }
 
-/* Mobile: tận dụng quy tắc responsive sẵn có của .card và button */
+/* Mobile:  */
 @media screen and (max-width: 600px) {
   .vindice-card { padding: 18px; }
 }
