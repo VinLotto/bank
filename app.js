@@ -1,4 +1,4 @@
-// app.js - VinBank DApp mới đồng bộ
+// app.js 
 
 let provider, signer, vinBank, vinToken, userAddress;
 
@@ -29,7 +29,7 @@ async function connectWallet() {
     vinBank = new ethers.Contract(CONTRACT_ADDRESS, BANK_ABI, signer);
     vinToken = new ethers.Contract(TOKEN_ADDRESS, TOKEN_ABI, signer);
 
-    // Hiển thị ví và số dư VIN
+    // 
     document.getElementById("walletAddress").innerText = `🔗 Connected: ${userAddress}`;
     const balance = await vinToken.balanceOf(userAddress);
     document.getElementById("vinBalance").innerText = ethers.formatUnits(balance, 18);
@@ -106,7 +106,7 @@ async function updateVinBalance() {
   document.getElementById("vinBalance").innerText = ethers.formatUnits(balance, 18);
 }
 
-// Chặn F12, Ctrl+Shift+I, Ctrl+U, click chuột phải
+// 
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("keydown", function (e) {
   if (
