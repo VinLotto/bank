@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VinBank - Decentralized Banking with VIN</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.3.0/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <!-- PHẦN HEADER -->
+    <div class="header">
+      <img src="favicon.png" alt="VIN Logo" class="logo" />
+      <div class="vin-info">
+        <div><strong>VIN Price:</strong> <span id="vinPrice">Loading...</span> USD</div>
+        <div><strong>Your VIN Balance:</strong> <span id="vinBalance">-</span></div>
+        <div><strong>Your Wallet:</strong> <span id="walletAddress">Not connected</span></div>
+      </div>
+      <button id="connectWallet">🔌 Connect Wallet</button>
+    </div>
+
+    <!-- THÔNG TIN VIN -->
+    <div class="card">
+      <h2>🔎 What is VIN?</h2>
+      <p>
+        VIN is a utility token used across the VIC blockchain ecosystem:
+      </p>
+      <ul>
+        <li><strong>Total Supply:</strong> 21,000,000 VIN</li>
+        <li><strong>Smart Contract:</strong> 
+          <a href="https://www.vicscan.xyz/token/0x941F63807401efCE8afe3C9d88d368bAA287Fac4" target="_blank">
+            0x941F63...Fac4
+          </a>
+        </li>
+        <li><strong>Swap:</strong> 
+          🔁 <a href="https://ipfs.io/ipfs/bafybeievvutakkkchayh4nwwvcrmu6ff4phhza5ma27rej7rqakhvvxdv4" target="_blank">Swap VIN/VIC now</a>
+        </li>
+      </ul>
+    </div>
+    <!-- VINPLAY -->
+    <div class="card">
+      <h2>🎮 Use VIN to Play</h2>
+      <p>
+        Use your VIN tokens to enjoy daily games with big rewards:
+        <ul>
+          <li>🎯 Jackpot – Win up to 100,000 VIN</li>
+          <li>💎 BetAll – Bet VIN on 00–99 across 27 draws</li>
+          <li>⚡ BetOne – One draw, 70x reward</li>
+        </ul>
+      </p>
+      <a href="https://vinplay.vin" target="_blank">
+        <button>🎲 Play Now on VinPlay.vin</button>
+      </a>
+    </div>
+
+    <!-- [Chèn VINDICE ngay dưới VINPLAY và trước VINSOCIAL | Chú giải: tiếng Việt, UI: tiếng Anh] -->
+    <div class="card vindice-card" id="vindice-card">
+      <h2>⚖️ VinDice – On-chain Even/Odd with VIN</h2>
+      <p>
+        Experience a 100% transparent even/odd game: place VIN, shake the bowl, and verify outcomes directly on the VIC blockchain.
+      <br/><br/>
+      ➤ <a href="https://ipfs.io/ipfs/bafybeifqr57tfyp6ngxssru6vapuzeew5hnsgqslvtvuibpvefsl5cusaa" target="_blank" rel="noopener">
+      Play VinDice (IPFS)
+      </a>
+      </p>
+        <ul class="mini-list">
+          <li>Flexible min bet (Max = Min × 50)</li>
+          <li>Correct guess pays 2×</li>
+          <li>Results verifiable on VicScan</li>
+        </ul>
+    </div>
+
+    <!-- VINSOCIAL -->
+    <div class="card">
+      <h2>💬 Use VIN in VinSocial</h2>
+      <p>
+        VinSocial.vin is a decentralized, censorship-resistant social network powered by VIN. 
+        Express yourself freely, connect and follow others, and own your social interactions completely on-chain.
+        <br><br>
+        🟢 Register once by paying 0.001 VIN and enjoy full access to post, like, comment, and follow.
+        <br><br>
+        ➤ <a href="https://ipfs.io/ipfs/bafybeiad6y3csh4q7pr5j57ed2wziyxvz5fe6xzslznt73tjverlagipfy" target="_blank">Explore VinSocial</a>
+      </p>
+    </div>
+    
+    <!-- VINBANK -->
+    <div class="card">
+      <h2>🏦 Use VIN in VinBank</h2>
+      <p>
+        💰 Earn 5% annual interest when you deposit VIN.<br>
+        📊 Borrow up to 70% of your deposited VIN at 7% annual interest.<br>
+        🔒 No liquidation risk. 100% on-chain.<br><br>
+        ⚠️ Note: You must repay or withdraw your previous position before starting a new one.
+      </p>
+    </div>
+
+    <!-- DEPOSIT -->
+    <div class="card">
+      <h2>📥 Deposit VIN</h2>
+      <input type="number" id="depositAmount" placeholder="Amount to deposit" />
+      <button onclick="depositVIN()">Deposit</button>
+    </div>
+
+    <!-- BORROW -->
+    <div class="card">
+      <h2>💸 Borrow VIN</h2>
+      <button onclick="borrowVIN()">Borrow 70%</button>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="card">
+      <h2>🧾 Account Summary</h2>
+      <button onclick="loadSummary()">Refresh Summary</button>
+      <pre id="summaryBox">Not loaded.</pre>
+    </div>
+
+    <!-- REPAY -->
+    <div class="card">
+      <h2>💳 Repay Loan</h2>
+      <button onclick="repayLoan()">Repay</button>
+    </div>
+
+    <!-- WITHDRAW -->
+    <div class="card">
+      <h2>🏧 Withdraw VIN</h2>
+      <button onclick="withdrawVIN()">Withdraw</button>
+    </div>
+    <!-- HƯỚNG DẪN & CỘNG ĐỒNG -->
+<div class="card">
+  <h2>📘 Learn More & Get Support</h2>
+  <p>
+    ➤ <a href="https://docs.google.com/document/d/1r30tVH5_lFuXEjBMgT0a9mx9Je9eGIVX/edit?usp=sharing" target="_blank">
+      Full Guide to Using VinBank.vin
+    </a><br/>
+    ➤ <a href="https://t.me/VinEcosystem" target="_blank">
+      Join our community on Telegram
+    </a><br/>
+    ➤ <a href="https://x.com/VinEcosystem" target="_blank">
+      Follow us on X (Twitter)
+    </a><br/>
+    ➤ <a href="https://vinswap.vin" target="_blank">
+      Swap VIN/VIC on VinSwap
+    </a>
+  </p>
+</div>
+
+
+    <!-- FOOTER THƯƠNG HIỆU -->
+    <div class="footer">
+      <hr />
+      <p>© 2025 <strong>VinBank</strong> – All Rights Reserved.</p>
+      <p><em>Empowering decentralized finance for everyone – simple, fair, and transparent.</em></p>
+      <p>Built on the VIC Blockchain – Powered by the VIN Token.</p>
+    </div>
+
+  </div> <!-- END container -->
+
+  <script src="app.js"></script>
+  <script>
+async function updateVinPrice() {
+  try {
+    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=VICUSDT");
+    const data = await res.json();
+    const vicPrice = parseFloat(data.price);
+    const vinPrice = (vicPrice * 100).toFixed(4);
+    document.getElementById("vinPrice").innerText = vinPrice;
+  } catch (err) {
+    document.getElementById("vinPrice").innerText = "N/A";
+    console.error("Failed to fetch VIC price:", err);
+  }
+}
+updateVinPrice();
+</script>
+
+</body>
+</html>
